@@ -23,14 +23,25 @@ class App < Sinatra::Base
     @c = params[:word3]
     @d = params[:word4]
     @e = params[:word5] 
-    "#{a} #{b} #{c} #{d} #{e}"
+    "#{@a} #{@b} #{@c} #{@d} #{@e}."
   end
 
-  get "/:operation/:number1/:number2" do 
+  get "/:operation/:number1/:number2" do
     @a = params[:operation]
     @n1 = params[:number1].to_i 
-    @n2 = params[:number2].to_i  
-    "#{@n1 @a @n2}"
-  end 
+    @n2 = params[:number2].to_i
+    answer = "Unable To Perform This Operation" 
+   #binding.pry  
+    if @a == "add"
+      answer = (@n1 + @n2).to_s  
+    elsif @a == "subtract"
+      answer = (@n1 - @n2).to_s
+    elsif @a == "divide"
+      answer = (@n1 / @n2).to_s
+    elsif @a == "multiply"
+      answer = (@n1 * @n2).to_s 
+    end
+   
+  end  
 
 end
